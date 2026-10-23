@@ -1,0 +1,43 @@
+# Local experiments, intermediate media and backups (keep on disk).
+/_art/
+/_backup/
+/_gen/
+/_hold/
+/_hold2/
+/_tmpswap/
+/_tmp*
+/probe*.png
+/pet-pack/_art/
+/pet-pack/_tmp/
+
+# Dependencies, generated output and local tools.
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.tools/
+.uv-cache/
+.npm-cache/
+dist/
+coverage/
+*.log
+
+# Credentials and personal settings.
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# Editors and operating system files.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

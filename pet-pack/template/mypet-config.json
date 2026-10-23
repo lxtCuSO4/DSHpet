@@ -1,0 +1,54 @@
+{
+  // ══════════════════════════════════════════════════════════════════════
+  //  dsh-pet 文件宠物（pet pack）配置 —— 一个文件 = 一只桌宠 = 一个素材根
+  //  文件名前缀必须与素材目录同名：pet/__PET_ID_FILE__-config.json
+  //                          ↔  pet/__PET_ID_FILE__-animation/*.webm
+  //  本文件是 JSONC：// 注释合法（宿主读取时会剥掉）
+  // ══════════════════════════════════════════════════════════════════════
+
+  "pets": [
+    {
+      "id": "__PET_ID__",           // 实例 id：全局唯一（含主宠物），只允许标识符字符
+      "name": "__PET_NAME__",       // 界面显示名（设置页 / 右键菜单）
+      "size": __SIZE__,             // 显示宽度 px；主宠物基准 462，命中框按 size/462 缩放
+      "balanceEnabled": false,      // 余额播报：pet pack 一般关掉（余额只有主宠物那一份）
+      "whisperEnabled": false,      // 碎碎念：要先在设置页配模型
+      "workStatusEnabled": false,   // 工作状态跟随
+      "fixedEnabled": false,        // true = 不乱走、不翻面，只原地做动作
+      "display": "__DISPLAY__",     // none | web | desktop | both —— 素材齐了再改
+      "position": { "corner": "top-right", "marginX": 24, "marginY": 100 }
+    }
+  ],
+
+  // ── 动画池 ─────────────────────────────────────────────────────────────
+  //  每一项的名字 = 素材目录里的同名 .webm（不含扩展名，中文/空格都可以）
+  //  缺文件不会报错，只会 404 → 那只宠物那一帧是空白，所以名字必须逐字对齐
+  "animations": {
+    "idle": ["待机呼吸"],       // 待机池：必填、不能空
+    "turn": [],                 // 转向池：可空。只有 animationWeights.turn > 0 才抽得到
+    "drag": ["被抓起悬空"],     // 被鼠标拖起来 / 甩飞时的姿势
+    "clicks": ["点击回应"],     // 点一下播的回应（要能随时被打断，别做长动作）
+
+    // 自己走到别处：用双腿走，不需要专门素材（下面四个数控制走多远/多久）
+    "moves": {
+      "default": { "minDist": 60, "maxDist": 240, "margin": 20, "leadSec": 2, "tailSec": 2 },
+      "actions": []
+    },
+
+    // 原地小动作池：想让它"活起来"就往这里加，再把下面 idle 权重调低
+    // 例：{ "id": "小动作", "weight": 20, "actions": ["挠头", "伸懒腰"] }
+    "categories": [],
+
+    // 事件档位（不进随机链，只由代码触发）。校验要求 balance 非空，
+    // balanceEnabled=false 时永远不会播，先拿待机顶上占位。
+    "events": {
+      "balance": ["待机呼吸"]
+    }
+  },
+
+  // ── 随机链权重 ─────────────────────────────────────────────────────────
+  //  idle + turn + move 之和 ≤ 100，剩下的百分比归给 categories。
+  //  当前 idle=100：永远播待机（素材没齐时的安全档）。加了小动作后改成：
+  //  { "idle": 70, "turn": 0, "move": 5 } → 剩余 25% 走 categories
+  "animationWeights": { "idle": 100, "turn": 0, "move": 0 }
+}
