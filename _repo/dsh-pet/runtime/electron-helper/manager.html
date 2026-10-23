@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; media-src 'self' dsh-pet-bridge: http: https:; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>桌宠管理</title>
+    <link rel="stylesheet" href="./manager.css" />
+    <script src="./manager-page.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <div class="wordmark">
+          <span class="brand-mark" aria-hidden="true">m<span>·</span></span
+          ><span>DSH PET<span class="brand-caption">DESKTOP COMPANIONS</span></span>
+        </div>
+        <span class="local-badge"><i aria-hidden="true"></i> 本机设置</span>
+      </header>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">一点陪伴，刚刚好</p>
+          <h1 id="page-title">桌宠管理<span class="title-dot">.</span></h1>
+          <p class="muted">选择今天的伙伴，让它们以你喜欢的方式陪在桌面。</p>
+        </div>
+        <div class="global-actions">
+          <button id="hide-all" class="button primary" type="button" disabled>全部隐藏</button
+          ><button id="refresh" class="button icon-button" type="button" aria-label="刷新桌宠列表" title="刷新桌宠列表">
+            ↻
+          </button>
+        </div>
+      </section>
+      <div id="service-error" class="notice error" role="alert" hidden></div>
+      <section aria-labelledby="pets-heading">
+        <div class="section-heading">
+          <h2 id="pets-heading">我的桌宠 <span id="pet-count" class="count">—</span></h2>
+          <span class="section-note">开关与大小自动保存</span>
+        </div>
+        <div id="pets" class="pet-grid" aria-busy="true"><p class="empty">正在读取你的桌宠…</p></div>
+      </section>
+      <section class="display-section" aria-labelledby="display-heading">
+        <div class="section-heading">
+          <h2 id="display-heading">显示与专注</h2>
+          <span id="probe-state" class="section-note">正在读取显示状态…</span>
+        </div>
+        <fieldset id="display-modes" class="mode-grid">
+          <legend class="sr-only">窗口显示模式</legend>
+          <label class="mode-option"
+            ><input type="radio" name="mode" value="smart" /><span class="mode-content"
+              ><span class="mode-title">智能避让 <span class="recommend">推荐</span></span
+              ><span class="mode-description">平时陪伴，全屏时自动让位。<br />退出全屏后恢复显示。</span></span
+            ></label
+          >
+          <label class="mode-option"
+            ><input type="radio" name="mode" value="normal" /><span class="mode-content"
+              ><span class="mode-title">普通窗口</span
+              ><span class="mode-description">允许其它窗口遮挡桌宠，<br />减少对工作内容的干扰。</span></span
+            ></label
+          >
+          <label class="mode-option"
+            ><input type="radio" name="mode" value="topmost" /><span class="mode-content"
+              ><span class="mode-title">始终置顶</span
+              ><span class="mode-description">保持在其它窗口上方，<br />全屏时也继续显示。</span></span
+            ></label
+          >
+        </fieldset>
+        <div class="preference-row">
+          <div>
+            <h3>一键收起，随时回来</h3>
+            <p class="muted small">临时隐藏不会改变每只桌宠的开关。</p>
+          </div>
+          <label class="hotkey-control"
+            ><kbd id="hotkey-label">Ctrl + Alt + P</kbd
+            ><input id="hotkey" class="switch" role="switch" type="checkbox" aria-label="启用全部隐藏快捷键"
+          /></label>
+        </div>
+        <div class="preference-row position-row">
+          <div>
+            <h3>记住它们的位置</h3>
+            <p class="muted small">自动记住拖动后的位置。找不到时，可点角色下方的“找回位置”。</p>
+          </div>
+          <span class="enabled-label"><i aria-hidden="true"></i> 自动记忆</span>
+        </div>
+      </section>
+      <footer>
+        <span>只保存在这台电脑 · 关闭管理页后继续陪伴</span>
+        <p id="feedback" role="status" aria-live="polite">正在加载设置…</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -22,6 +22,10 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('petBridge', {
+  // pet-manager integration v2
+  openManager() {
+    ipcRenderer.send('pet:open-manager');
+  },
   setBounds(x, y, width, height, boxX, boxY, size, bottomPad, vx, vy, marginL, marginT) {
     ipcRenderer.send('pet:set-bounds', {
       x,

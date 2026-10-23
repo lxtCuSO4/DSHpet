@@ -932,13 +932,13 @@ export function apply(ctx: any): void {
 
   let hasDesktopPet = false;
   /**
-   * 桌面模式是否**曾经**成功启动过（粘性，仅本插件生命周期内有效）。
+   * 桌面模式是否**曾经**成功启动过；已有管理偏好文件时跨宿主重启保留管理入口。
    * 把「没有桌面宠物就不启动」放宽成「从来没有过桌面宠物才不启动」：桌面宠物被全部改成
    * web/none 之后，Helper 仍会带着空宠物列表重启并常驻——因为托盘（桌面端显示开关）是此时
    * 唯一还能把宠物切回桌面的入口，Helper 一退它就没了。
    * 纯浏览器用户（从未有过桌面宠物）不受影响：照旧不探测、不下载、不拉起 Electron。
    */
-  let desktopModeEverActive = false;
+  let desktopModeEverActive = existsSync(join(userRoot, 'desktop-manager.json'));
   const refreshDesktop = (): void => {
     hasDesktopPet = false;
     try {
