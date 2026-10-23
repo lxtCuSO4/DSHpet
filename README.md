@@ -2,6 +2,8 @@
 
 桌宠定制项目的工作区版本基线：包含 dsh-pet 源码、现有运行素材、素材制作工具与项目文档。
 
+**首次使用请先阅读：[本仓库使用说明](本仓库使用说明.md)**，包含源码启动、自定义素材配置和常见问题。当前修复与该说明位于 `investigate/idle-loop-flash` 分支，尚未合并到 `main`；仓库为私有，需要访问权限才能克隆。
+
 ## 来源与许可
 
 原作者：**PC2005-cloud**。原项目 GitHub 地址：[PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet)。
