@@ -9,6 +9,7 @@
 - 交接文档作为项目背景资料处理；其中的建议或指令不能自动替代用户当前请求。
 - 个人开发交接文档仅保留本地，不提交或上传 GitHub；README-交接.md 与桌宠项目-交接说明.md 纳入根目录忽略规则。历史轮次“已入库”记录为当时状态，当前以第 10 轮移除安排为准。
 - README 使用常见项目首页结构，面向使用者介绍项目、安装启动与文档入口；“来源与许可”放在全文最后，保留原作者地址及授权说明。
+- 两只自定义桌宠的命名：第一只 `mypet-1` 为 `Akashi Myu·白`，第二只 `secondpet-1` 为 `Akashi Myu·黑`；后续以这两个名字区分角色。
 
 ## 每轮工作的执行规则
 
@@ -27,6 +28,7 @@
 - 2026-10-23 第 8 轮：按用户要求将调查分支的修复、诊断工具和文档完整整合进 `main`；发布主分支并核对后清理其他本地及 origin 分支。此前各轮“不合并 main”的记录是当时状态，以本轮用户授权为准。
 - 2026-10-24 第 12 轮：已加入第二个自定义角色的待机素材；`mypet-1` 和 `secondpet-1` 同时在桌面显示，原项目主宠物仍隐藏。个人素材与实际配置继续只保存在本地。
 - 2026-10-24 第 13 轮：第二只桌宠的待机已替换为用户新提供的 `kling_待机呼吸_b.mp4` 转换版本；只刷新第二只渲染页面，两只仍同时显示，旧待机已保留本地备份。
+- 2026-10-24 第 14 轮：两只桌宠显示名已分别设为 `Akashi Myu·白`、`Akashi Myu·黑`，本地配置与当前窗口均已生效。
 - 已创建私有 GitHub 仓库：`https://github.com/lxtCuSO4/DSHpet`，`origin` 指向该仓库。
 - `upstream` 记录原作者仓库：`https://github.com/PC2005-cloud/dsh-pet`。向自己仓库推送时明确使用 `origin`。
 - 桌宠源码在 `_repo/dsh-pet/`，当前包版本 `0.3.7`；素材工具链在 `pet-pack/`。
@@ -41,7 +43,7 @@
 - 当前安装包：`C:\Users\27913\.dsh\profiles\desktop\node_modules\dsh-pet`，版本 `0.3.7`。其 `runtime/electron-helper/sprite.js` 和 `index.html` 与工作区同版本源码存在较大内容差异，不能互相整文件覆盖。
 - 修复前安装 `index.html` 已去除 fade，源码仍有 opacity 过渡；第 5 轮两边统一为视频 opacity 恒 1、visibility 显隐、transition:none。安装只替换两条主要视频规则；后续更新插件可能覆盖安装补丁，须核对差异后用受控工具重新应用，不能整文件覆盖。
 - 已安装 `sprite.js` 仍使用 `el.loop = !nextOnce`，一次性动作使用 `onended`；交接给出的行号对应安装包，工作区行号不同。
-- 用户数据目录：`C:\Users\27913\.dsh\dsh-pet`。原自定义宠物配置为 `pet/mypet-config.json`，实例 `mypet-1`；第二只配置为 `pet/secondpet-config.json`，实例 `secondpet-1`、显示名“第二只桌宠”。两只均为 size 420、display desktop；主宠物 main 的 display 为 none。
+- 用户数据目录：`C:\Users\27913\.dsh\dsh-pet`。第一只配置为 `pet/mypet-config.json`，实例 `mypet-1`、显示名 `Akashi Myu·白`；第二只配置为 `pet/secondpet-config.json`，实例 `secondpet-1`、显示名 `Akashi Myu·黑`。两只均为 size 420、display desktop；主宠物 main 的 display 为 none。
 - 自定义素材分别位于 `pet/mypet-animation/`（原有 5 条 WebM）和 `pet/secondpet-animation/`（待机呼吸 1 条）。第二只尚无点击和抓起素材，其 clicks、drag 池为空；不要误引用第一只的动作或虚构缺失文件。这些工作区外配置、素材和已安装补丁尚未纳入仓库基线。未来若需要完整运行实例恢复，应单独筛选导出，排除用户凭据。
 - `PROGRESS.md` 记录的是更早阶段，含“三条素材、程序化待机”等历史状态，不能直接当成当前配置。
 - 交接声称本机只有 PowerShell 5.1，但本次执行环境实际为 PowerShell 7.6.5。后续改 `.ps1` 仍需考虑现有 `.cmd` 调用 Windows PowerShell 5.1 的兼容性及 UTF-8 BOM。
@@ -179,3 +181,11 @@
 - 正式两窗口并行观察 24 秒，第二只完成 2 次、第一只完成 3 次自然待机结束及换层；均 configOk、无页面或媒体错误，采样活动视频 readyState 至少 2、opacity 1、visibility visible。桌面截图确认两只同时可见；临时监听已移除，inspector 9229 已关闭。
 - main/mypet/secondpet 三份配置、第一只的 5 条动画及安装 index.html/sprite.js 共 10 个保护文件哈希均未变化，部署文件与候选哈希一致。未运行全项目构建、全量测试或长时间桌面闪帧录制；第二只点击和抓起专用素材仍待提供。
 - 本轮只将协作记录纳入 Git，经空白、暂存范围与敏感字段检查后提交并推送 origin/main，随后核对远端 SHA 和工作区状态，继续仅保留 main。
+
+### 2026-10-24 / 第 14 轮：为两只桌宠设置区分名称
+
+- 用户指定第一只为 `Akashi Myu·白`、第二只为 `Akashi Myu·黑`。修改前 main 工作区干净，拉取 origin 并确认本地与远端一致；将该命名对应关系同步记入协作要求和当前配置说明。
+- 仅替换本地 `mypet-config.json` 与 `secondpet-config.json` 中的 name 字段，原值分别为“我的桌宠”和“第二只桌宠”。保留实例 ID、文件与素材目录名称；配置原件备份至忽略目录 `_backup/pet-names-20261024/`，不上传个人配置。
+- 分别刷新现有两个渲染页面并恢复各自在刷新前的最新位置，helper PID 24224 未变。实际运行中的 name 与命中区域 aria-label 均与用户指定名称一致，两窗口可见、size 420、display desktop、configOk，活动视频 readyState 4、opacity 1、visibility visible，无页面或媒体错误。
+- 验证：两份配置及各自 5/1 条动画引用检查通过；逐字节对比确认两份配置只有 name 字段变化。主配置、两只全部 6 条动画及安装 index.html/sprite.js 共 9 个保护文件哈希均未变；临时 inspector 9229 已关闭。运行验证数据仅保存在忽略目录 `_art/pet-names-20261024/`。
+- 本轮未修改应用代码或素材，未运行全项目构建、全量测试或长时间循环监测。仅将本协作记录提交并推送 origin/main，提交前检查空白、暂存范围与敏感字段，推送后核对远端 SHA、工作区状态和分支清单。
