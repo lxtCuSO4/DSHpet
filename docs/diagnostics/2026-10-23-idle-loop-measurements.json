@@ -1,0 +1,456 @@
+{
+  "date": "2026-10-23",
+  "status": "boundary blank captured on desktop; underlying cause unresolved",
+  "isolated_probes": {
+    "probe-no-input": {
+      "transport": "http",
+      "scenario": "original",
+      "initial_loop": false,
+      "captured_frames_after_startup": 1052,
+      "zero_alpha_frames": 0,
+      "switches": 4,
+      "observed_video_time_wraps": 4,
+      "alpha_range": [
+        5116166,
+        5352886
+      ],
+      "boundaries": [
+        {
+          "boundary_ms": 10214.9,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 13.4
+        },
+        {
+          "boundary_ms": 20226.3,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 15.0
+        },
+        {
+          "boundary_ms": 30239.1,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 13.2
+        },
+        {
+          "boundary_ms": 40252.7,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 13.0
+        }
+      ]
+    },
+    "probe-bridge": {
+      "transport": "bridge",
+      "scenario": "original",
+      "initial_loop": false,
+      "captured_frames_after_startup": 1534,
+      "zero_alpha_frames": 0,
+      "switches": 6,
+      "observed_video_time_wraps": 6,
+      "alpha_range": [
+        5116166,
+        5352886
+      ],
+      "boundaries": [
+        {
+          "boundary_ms": 10221.9,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 6.3
+        },
+        {
+          "boundary_ms": 20229.2,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 7.9
+        },
+        {
+          "boundary_ms": 30237.3,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 7.3
+        },
+        {
+          "boundary_ms": 40245.4,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 6.4
+        },
+        {
+          "boundary_ms": 50252.3,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 7.4
+        },
+        {
+          "boundary_ms": 60260.6,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 6.8
+        }
+      ]
+    },
+    "probe-bridge-long": {
+      "transport": "bridge",
+      "scenario": "original",
+      "initial_loop": false,
+      "captured_frames_after_startup": 2978,
+      "zero_alpha_frames": 0,
+      "switches": 12,
+      "observed_video_time_wraps": 12,
+      "alpha_range": [
+        5116166,
+        5352886
+      ],
+      "boundaries": [
+        {
+          "boundary_ms": 10253.7,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 6.7
+        },
+        {
+          "boundary_ms": 20261.8,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 8.1
+        },
+        {
+          "boundary_ms": 30271.9,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 6.9
+        },
+        {
+          "boundary_ms": 40278.8,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 7.3
+        },
+        {
+          "boundary_ms": 50287.5,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 9.0
+        },
+        {
+          "boundary_ms": 60298.7,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 7.1
+        },
+        {
+          "boundary_ms": 70307,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 9.9
+        },
+        {
+          "boundary_ms": 80318.4,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 9.9
+        },
+        {
+          "boundary_ms": 90329.7,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 6.8
+        },
+        {
+          "boundary_ms": 100338.3,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5335179,
+          "min_alpha_ratio": 0.998928,
+          "loadeddata_delay_ms": 7.2
+        },
+        {
+          "boundary_ms": 110346.9,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998594,
+          "loadeddata_delay_ms": 7.1
+        },
+        {
+          "boundary_ms": 120355.2,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": 7.5
+        }
+      ]
+    },
+    "probe-native": {
+      "transport": "bridge",
+      "scenario": "native",
+      "initial_loop": true,
+      "captured_frames_after_startup": 813,
+      "zero_alpha_frames": 0,
+      "switches": 0,
+      "observed_video_time_wraps": 3,
+      "alpha_range": [
+        5116166,
+        5352886
+      ],
+      "boundaries": [
+        {
+          "boundary_ms": 10230.4,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": null
+        },
+        {
+          "boundary_ms": 20233.3,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": null
+        },
+        {
+          "boundary_ms": 30241,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5333410,
+          "min_alpha_ratio": 0.998597,
+          "loadeddata_delay_ms": null
+        }
+      ]
+    },
+    "probe-old-fade": {
+      "transport": "bridge",
+      "scenario": "fade",
+      "initial_loop": false,
+      "captured_frames_after_startup": 802,
+      "zero_alpha_frames": 0,
+      "switches": 3,
+      "observed_video_time_wraps": 3,
+      "alpha_range": [
+        4225305,
+        5352886
+      ],
+      "boundaries": [
+        {
+          "boundary_ms": 10200,
+          "baseline_alpha": 5340918,
+          "min_alpha": 5258561,
+          "min_alpha_ratio": 0.98458,
+          "loadeddata_delay_ms": 6.7
+        },
+        {
+          "boundary_ms": 20207.6,
+          "baseline_alpha": 5340902.0,
+          "min_alpha": 5155609,
+          "min_alpha_ratio": 0.965307,
+          "loadeddata_delay_ms": 8.1
+        },
+        {
+          "boundary_ms": 30217.5,
+          "baseline_alpha": 5340918,
+          "min_alpha": 4225305,
+          "min_alpha_ratio": 0.79112,
+          "loadeddata_delay_ms": 8.6
+        }
+      ]
+    }
+  },
+  "extended_recording": {
+    "recording": "live-extended-60fps.mp4",
+    "segment_seconds": 75.0,
+    "decoded_frames": 4124,
+    "source_frames": 240,
+    "stage_xywh": [
+      -109,
+      113,
+      630,
+      354
+    ],
+    "roi_xywh": [
+      165,
+      190,
+      95,
+      240
+    ],
+    "comparison_rgb_size": [
+      24,
+      60
+    ],
+    "background_assumption": "white; stationary position and scale",
+    "mean_best_rmse_255": 5.909858516763415,
+    "max_best_rmse_255": 62.53277587890625,
+    "candidate_threshold_rmse_255": 17.644640922546387,
+    "candidate_outliers_for_visual_review": [
+      {
+        "decoded_frame": 3086,
+        "pts_seconds": 56.233333,
+        "rmse_255": 62.53277587890625
+      }
+    ],
+    "largest_residuals": [
+      {
+        "decoded_frame": 3086,
+        "source_frame": 111,
+        "pts_seconds": 56.233333,
+        "rmse_255": 62.53277587890625
+      },
+      {
+        "decoded_frame": 3382,
+        "source_frame": 128,
+        "pts_seconds": 61.566667,
+        "rmse_255": 6.515508651733398
+      },
+      {
+        "decoded_frame": 3934,
+        "source_frame": 128,
+        "pts_seconds": 71.566667,
+        "rmse_255": 6.513234615325928
+      },
+      {
+        "decoded_frame": 1726,
+        "source_frame": 128,
+        "pts_seconds": 31.533333,
+        "rmse_255": 6.512665748596191
+      },
+      {
+        "decoded_frame": 2826,
+        "source_frame": 128,
+        "pts_seconds": 51.55,
+        "rmse_255": 6.512096881866455
+      },
+      {
+        "decoded_frame": 1171,
+        "source_frame": 128,
+        "pts_seconds": 21.533333,
+        "rmse_255": 6.511528491973877
+      },
+      {
+        "decoded_frame": 2828,
+        "source_frame": 128,
+        "pts_seconds": 51.583333,
+        "rmse_255": 6.511528491973877
+      },
+      {
+        "decoded_frame": 2277,
+        "source_frame": 128,
+        "pts_seconds": 41.566667,
+        "rmse_255": 6.511528491973877
+      },
+      {
+        "decoded_frame": 2276,
+        "source_frame": 128,
+        "pts_seconds": 41.55,
+        "rmse_255": 6.510959625244141
+      },
+      {
+        "decoded_frame": 629,
+        "source_frame": 128,
+        "pts_seconds": 11.516667,
+        "rmse_255": 6.509252548217773
+      },
+      {
+        "decoded_frame": 1172,
+        "source_frame": 128,
+        "pts_seconds": 21.55,
+        "rmse_255": 6.508683681488037
+      },
+      {
+        "decoded_frame": 630,
+        "source_frame": 128,
+        "pts_seconds": 11.533333,
+        "rmse_255": 6.508114814758301
+      }
+    ],
+    "limitations": "ROI only; timestamps come from the recording, not an assumed 60fps cadence. Does not establish absence of intermittent or panel-only artifacts."
+  },
+  "reviewed_boundary": {
+    "before_pts": 56.2,
+    "blank_pts": 56.233333,
+    "after_pts": 56.25,
+    "source_before": 237,
+    "source_after": 4,
+    "rmse_max_excluding_blank": 6.515508651733398
+  },
+  "first_recording": {
+    "best_phase_frame": 172,
+    "best_phase_sec": 7.166666666666667,
+    "mean_best_rmse": 0.9468957185745239,
+    "largest_residuals": [
+      {
+        "frame": 1692,
+        "sec": 28.2,
+        "source_frame": 128,
+        "source_sec": 5.3333,
+        "rmse": 1.0189
+      },
+      {
+        "frame": 1091,
+        "sec": 18.1833,
+        "source_frame": 128,
+        "source_sec": 5.3333,
+        "rmse": 1.0148
+      },
+      {
+        "frame": 491,
+        "sec": 8.1833,
+        "source_frame": 128,
+        "source_sec": 5.3333,
+        "rmse": 0.9986
+      },
+      {
+        "frame": 1211,
+        "sec": 20.1833,
+        "source_frame": 176,
+        "source_sec": 7.3333,
+        "rmse": 0.9945
+      },
+      {
+        "frame": 271,
+        "sec": 4.5167,
+        "source_frame": 40,
+        "source_sec": 1.6667,
+        "rmse": 0.9904
+      },
+      {
+        "frame": 1082,
+        "sec": 18.0333,
+        "source_frame": 124,
+        "source_sec": 5.1667,
+        "rmse": 0.9904
+      },
+      {
+        "frame": 1812,
+        "sec": 30.2,
+        "source_frame": 176,
+        "source_sec": 7.3333,
+        "rmse": 0.9904
+      },
+      {
+        "frame": 1817,
+        "sec": 30.2833,
+        "source_frame": 178,
+        "source_sec": 7.4167,
+        "rmse": 0.9904
+      }
+    ]
+  }
+}
