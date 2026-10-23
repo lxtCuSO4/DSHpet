@@ -19,6 +19,8 @@ parser.add_argument("--seconds", type=float, required=True)
 parser.add_argument("--stage", type=int, nargs=4, required=True, metavar=("X", "Y", "W", "H"))
 parser.add_argument("--roi", type=int, nargs=4, required=True, metavar=("X", "Y", "W", "H"))
 parser.add_argument("--output", type=Path, required=True)
+parser.add_argument("--opaque-only", action="store_true",
+                    help="Compare only pixels opaque in every source frame; ignore the desktop background")
 args = parser.parse_args()
 sx, sy, sw, sh = args.stage
 rx, ry, rw, rh = args.roi
@@ -47,8 +49,14 @@ def decode(path, filters, source=False):
 reference = decode(args.source,
                    f"scale={sw}:{sh},crop={rw}:{rh}:{rx-sx}:{ry-sy},scale=24:60", True)
 alpha = reference[..., 3:] / 255
+opaque_mask = reference[..., 3].min(axis=0) >= 254
 reference = reference[..., :3] * alpha + 255 * (1 - alpha)
 live = decode(args.recording, f"crop={rw}:{rh}:{rx}:{ry},scale=24:60")
+if args.opaque_only:
+    if opaque_mask.sum() < 20:
+        raise RuntimeError("Too few consistently opaque pixels in ROI")
+    reference = reference[:, opaque_mask, :]
+    live = live[:, opaque_mask, :]
 reference = reference.reshape(len(reference), -1)
 live = live.reshape(len(live), -1)
 if not len(reference) or not len(live):
@@ -82,7 +90,8 @@ summary = {
     "stage_xywh": args.stage,
     "roi_xywh": args.roi,
     "comparison_rgb_size": [24, 60],
-    "background_assumption": "white; stationary position and scale",
+    "background_assumption": "opaque source pixels only" if args.opaque_only else "white; stationary position and scale",
+    "compared_pixels_per_frame": int(reference.shape[1] // 3),
     "mean_best_rmse_255": float(np.mean(errors)),
     "max_best_rmse_255": float(max(errors)),
     "candidate_threshold_rmse_255": threshold,

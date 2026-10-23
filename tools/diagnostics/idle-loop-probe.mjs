@@ -15,7 +15,7 @@ const seconds = Number(process.argv[3] || 35);
 if (!Number.isFinite(seconds) || seconds <= 0) throw new Error('Duration must be positive');
 const transport = process.argv[4] || 'http';
 const scenario = process.argv[5] || 'original';
-if (!['http','bridge'].includes(transport) || !['original','native','fade'].includes(scenario)) throw new Error('Invalid diagnostic scenario');
+if (!['http','bridge'].includes(transport) || !['original','native','fade','visibility'].includes(scenario)) throw new Error('Invalid diagnostic scenario');
 const home = join(homedir(), '.dsh');
 const installed = join(home, 'profiles/desktop/node_modules/dsh-pet');
 const assetDir = join(home, 'dsh-pet/pet/mypet-animation');
@@ -81,6 +81,9 @@ try {
   });
   // Positive control: recreate the old CSS fade only in this temporary renderer.
   if (scenario === 'fade') await page.addStyleTag({ content:'video.pet-video { transition:opacity 0.18s ease !important; }' });
+  // Single-variable diagnostic: keep media loading/handoff, change only the CSS visibility mechanism.
+  if (scenario === 'visibility') await page.addStyleTag({ content:
+    'video.pet-video { opacity:1 !important; visibility:hidden !important; } video.pet-video.is-front { visibility:visible !important; }' });
   const setup = await page.evaluate(() => {
     window.__idleProbe = { events: [], raf: [], videoFrames: [], start: performance.now(), timeOrigin:performance.timeOrigin };
     const p = window.__idleProbe;
@@ -115,6 +118,7 @@ try {
       const front = sprite.front === 0 ? sprite.videoA : sprite.videoB;
       const row = { ...state('raf', front),
         A: getComputedStyle(sprite.videoA).opacity, B: getComputedStyle(sprite.videoB).opacity,
+        visibilityA: getComputedStyle(sprite.videoA).visibility, visibilityB: getComputedStyle(sprite.videoB).visibility,
         pending: Boolean(sprite.pending), src: front.currentSrc.split('/').pop() };
       if (last !== row.front || row.currentTime < 0.35 || row.currentTime > row.duration - 0.35 || row.readyState < 2) p.raf.push(row);
       last = row.front;
