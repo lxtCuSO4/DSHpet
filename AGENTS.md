@@ -25,6 +25,7 @@
 
 - 2026-10-23：根目录已初始化 Git，主分支为 `main`。
 - 2026-10-23 第 8 轮：按用户要求将调查分支的修复、诊断工具和文档完整整合进 `main`；发布主分支并核对后清理其他本地及 origin 分支。此前各轮“不合并 main”的记录是当时状态，以本轮用户授权为准。
+- 2026-10-24 第 12 轮：已加入第二个自定义角色的待机素材；`mypet-1` 和 `secondpet-1` 同时在桌面显示，原项目主宠物仍隐藏。个人素材与实际配置继续只保存在本地。
 - 已创建私有 GitHub 仓库：`https://github.com/lxtCuSO4/DSHpet`，`origin` 指向该仓库。
 - `upstream` 记录原作者仓库：`https://github.com/PC2005-cloud/dsh-pet`。向自己仓库推送时明确使用 `origin`。
 - 桌宠源码在 `_repo/dsh-pet/`，当前包版本 `0.3.7`；素材工具链在 `pet-pack/`。
@@ -39,8 +40,8 @@
 - 当前安装包：`C:\Users\27913\.dsh\profiles\desktop\node_modules\dsh-pet`，版本 `0.3.7`。其 `runtime/electron-helper/sprite.js` 和 `index.html` 与工作区同版本源码存在较大内容差异，不能互相整文件覆盖。
 - 修复前安装 `index.html` 已去除 fade，源码仍有 opacity 过渡；第 5 轮两边统一为视频 opacity 恒 1、visibility 显隐、transition:none。安装只替换两条主要视频规则；后续更新插件可能覆盖安装补丁，须核对差异后用受控工具重新应用，不能整文件覆盖。
 - 已安装 `sprite.js` 仍使用 `el.loop = !nextOnce`，一次性动作使用 `onended`；交接给出的行号对应安装包，工作区行号不同。
-- 用户数据目录：`C:\Users\27913\.dsh\dsh-pet`。自定义宠物配置为 `pet/mypet-config.json`，当前 `mypet-1`、size 420、display desktop；主宠物 main 的 display 为 none。
-- 自定义素材位于用户数据目录下的 `pet/mypet-animation/`，共 5 条 WebM；这些工作区外配置、素材和已安装补丁尚未纳入本次仓库基线。未来若需要完整运行实例恢复，应单独筛选导出，排除用户凭据。
+- 用户数据目录：`C:\Users\27913\.dsh\dsh-pet`。原自定义宠物配置为 `pet/mypet-config.json`，实例 `mypet-1`；第二只配置为 `pet/secondpet-config.json`，实例 `secondpet-1`、显示名“第二只桌宠”。两只均为 size 420、display desktop；主宠物 main 的 display 为 none。
+- 自定义素材分别位于 `pet/mypet-animation/`（原有 5 条 WebM）和 `pet/secondpet-animation/`（待机呼吸 1 条）。第二只尚无点击和抓起素材，其 clicks、drag 池为空；不要误引用第一只的动作或虚构缺失文件。这些工作区外配置、素材和已安装补丁尚未纳入仓库基线。未来若需要完整运行实例恢复，应单独筛选导出，排除用户凭据。
 - `PROGRESS.md` 记录的是更早阶段，含“三条素材、程序化待机”等历史状态，不能直接当成当前配置。
 - 交接声称本机只有 PowerShell 5.1，但本次执行环境实际为 PowerShell 7.6.5。后续改 `.ps1` 仍需考虑现有 `.cmd` 调用 Windows PowerShell 5.1 的兼容性及 UTF-8 BOM。
 - 交接中记载“不喜欢混合/叠影”的历史偏好；设计动画处理方案时应保留该背景，避免未经确认自动重新引入。
@@ -153,3 +154,15 @@
 - 验证：通过 gh repo view 读取 GitHub 返回结果，description 与设定文本完全一致；仓库仍为 PRIVATE，homepage 与 topics 保持原值。仅更新仓库元数据和本记录，未修改应用，无需运行应用测试。
 - 推送记录时发现远端新增 0e29015，将 README 标题改为“DSHpet(自用存档)”。已拉取并合并该提交，保留远端标题修改及本轮记录，无冲突、不强推。
 - 本记录经 Git 空白与暂存范围检查后提交并推送 origin/main，随后核对本地与远端提交及工作区状态。
+
+### 2026-10-24 / 第 12 轮：加入第二只桌宠的待机素材并启用同时显示
+
+- 用户提供 `D:\browser\kling_待机呼吸_black.mp4`，要求加入第二只桌宠并允许两只同时出现。修改前 main 工作区干净，origin/main 与本地一致；未修改播放器代码，使用既有多宠物配置能力。
+- 实测源视频为绿幕而非黑底，H.264、1916×1080、24 fps、241 帧，带 AAC 音轨。源文件 SHA-256：`642EE33CC07D23E4ED41043F1E822216EB77677EFDBC211261041CB0D5E3913F`。原文件保留不动；仅在处理副本中将右下角纯背景上的角标区域涂绿、去掉音轨、等比补边为 1280×720 后抠像。
+- 在隔离临时目录调用现有 HSV 抠像和归一化工具。对照预览发现默认绿色范围会损失部分偏青发丝，本素材将 GREEN_HUE_MAX 从 170 收窄到 150、羽化仍为 6，未修改公共脚本或原桌宠素材。以 CRF 18 编码、现有 clean-edge 工具清边，输出 960×540、24 fps、VP9 alpha、10.042 秒的待机 WebM，保留 241 帧；未使用混帧、淡化或补帧。
+- 成品部署到 `C:\Users\27913\.dsh\dsh-pet\pet\secondpet-animation\待机呼吸.webm`，SHA-256：`D991B77A28928B58936FB1369DD5CF548F2C59FB04973AC49AA4252A175CD87F`，大小 2,347,506 字节。新增同级 `secondpet-config.json`，实例 secondpet-1、size 420、display desktop；idle 权重 100，turn/move 权重 0，clicks/drag 暂为空，关闭余额、碎碎念和工作状态；初始位置为 bottom-left、marginX 400、marginY 40。
+- 通过安装 helper 的原有 bridge `/reload` 接口重建为两只独立桌面窗口，helper PID 从 3520 变为 24224；重载前读取并恢复原桌宠最新会话位置。用户在验证期间仍有拖动，后续位置以用户实际移动为准，未反复覆盖。原 main 继续隐藏。
+- 验证：隔离配置和正式 secondpet 配置校验通过，原 mypet 配置及 5 条动画引用仍通过；透明通道解码覆盖 241 帧，四角均透明、每帧有角色，未发现面积至少 30 像素的角色外独立实心块。深浅背景预览检查了首、中、尾帧；脚底稳定为画高约 91.9%，边缘绿偏移 +3.58。源视频本身仍有细微轮廓和首尾差异，没有宣称像素级无缝。
+- 正式实例并行观察 24 秒，两窗口均 configOk、无页面或媒体错误，活动视频保持 opacity 1、visibility visible；新角色有 2 次自然播放结束和换层。原角色期间被用户拖动，包含抓起动画切换，不将其所有时间回绕当成自然待机循环。实际桌面截图确认两只角色同时可见；临时观察监听已移除、临时 inspector 9229 已关闭。
+- 逐一核对原 mypet 配置、main 配置、原有 5 条素材和安装 index.html，共 8 个输入文件 SHA-256 均未变；安装 HTML 仍是第 5 轮 visibility 修复版本。配置备份、输入哈希和重载前位置保存在本地 `_backup/second-pet-20261024/`；处理副本、预览及验证数据位于忽略目录 `_art/second-pet-20261024/`。个人原视频、透明素材、实际配置和截图均不提交 GitHub。
+- README 与使用说明去掉个人素材的固定数量，避免增加角色后首页信息过时。本轮未运行全项目构建、全量测试或长时间桌面闪帧录制；第二只的点击和抓起专用动画待用户提供。文档及本记录完成空白、链接与暂存范围检查后提交并推送 origin/main，再核对远端 SHA，继续仅保留 main。
