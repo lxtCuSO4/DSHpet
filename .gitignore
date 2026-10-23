@@ -10,6 +10,10 @@
 /pet-pack/_art/
 /pet-pack/_tmp/
 
+# Personal development handoff notes (local only).
+/README-交接.md
+/桌宠项目-交接说明.md
+
 # Dependencies, generated output and local tools.
 node_modules/
 __pycache__/
