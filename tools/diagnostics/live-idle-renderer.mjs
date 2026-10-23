@@ -9,7 +9,8 @@ export function installLiveIdleObserver(seconds) {
   let rafHandle, timer;
   const videoState = (video) => ({ currentTime: video.currentTime, duration: video.duration,
     readyState: video.readyState, loop: video.loop, paused: video.paused, ended: video.ended,
-    opacity: getComputedStyle(video).opacity, className: video.className,
+    opacity: getComputedStyle(video).opacity, visibility: getComputedStyle(video).visibility,
+    className: video.className,
     totalFrames: video.getVideoPlaybackQuality().totalVideoFrames,
     droppedFrames: video.getVideoPlaybackQuality().droppedVideoFrames });
   const state = (kind) => ({ kind, at: performance.now(), wallMs: Date.now(),

@@ -47,11 +47,13 @@
         height: 100%;
         object-fit: contain;
         pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.18s ease;
+        /* Keep full opacity: opacity handoffs can drop a transparent desktop video layer. */
+        opacity: 1;
+        visibility: hidden;
+        transition: none;
       }
       video.pet-video.is-front {
-        opacity: 1;
+        visibility: visible;
       }
       .pet-hit {
         position: absolute;

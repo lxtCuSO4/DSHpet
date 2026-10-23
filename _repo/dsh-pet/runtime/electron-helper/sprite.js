@@ -481,7 +481,7 @@ class PetSprite {
     });
   }
 
-  // 双缓冲切换（与浏览器同一套：前台 opacity 切换 + 降级视频清 handler 并停播，防残留 ended 雪崩）
+  // 双缓冲切换：is-front 类由 CSS visibility 显隐；降级视频清 handler 并停播，防残留 ended 雪崩。
   switchTo(next, nextOnce, playbackId, url) {
     if (!next) return;
     const pending = this.pending;

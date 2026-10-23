@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-23",
+  "candidate_desktop": {
+    "helper_probe_seconds": 245,
+    "desktop_analysis_seconds": 242,
+    "natural_switches": 24,
+    "decoded_frames": 14519,
+    "loop_boundary_disappearances": 0,
+    "max_rmse_after_3_seconds": 4.831674575805664,
+    "outliers": [
+      {
+        "decoded_frame": 122,
+        "pts_seconds": 2.05,
+        "rmse_255": 21.550790786743164
+      },
+      {
+        "decoded_frame": 123,
+        "pts_seconds": 2.066667,
+        "rmse_255": 18.487468719482422
+      },
+      {
+        "decoded_frame": 124,
+        "pts_seconds": 2.083333,
+        "rmse_255": 15.437790870666504
+      },
+      {
+        "decoded_frame": 125,
+        "pts_seconds": 2.1,
+        "rmse_255": 14.821913719177246
+      },
+      {
+        "decoded_frame": 126,
+        "pts_seconds": 2.116667,
+        "rmse_255": 14.711127281188965
+      },
+      {
+        "decoded_frame": 127,
+        "pts_seconds": 2.133333,
+        "rmse_255": 14.740026473999023
+      },
+      {
+        "decoded_frame": 128,
+        "pts_seconds": 2.15,
+        "rmse_255": 14.722393989562988
+      },
+      {
+        "decoded_frame": 129,
+        "pts_seconds": 2.166667,
+        "rmse_255": 14.82303237915039
+      },
+      {
+        "decoded_frame": 130,
+        "pts_seconds": 2.183333,
+        "rmse_255": 12.001842498779297
+      },
+      {
+        "decoded_frame": 153,
+        "pts_seconds": 2.566667,
+        "rmse_255": 14.339385032653809
+      },
+      {
+        "decoded_frame": 154,
+        "pts_seconds": 2.583333,
+        "rmse_255": 18.516891479492188
+      },
+      {
+        "decoded_frame": 155,
+        "pts_seconds": 2.6,
+        "rmse_255": 18.76372528076172
+      },
+      {
+        "decoded_frame": 156,
+        "pts_seconds": 2.616667,
+        "rmse_255": 18.68639373779297
+      },
+      {
+        "decoded_frame": 157,
+        "pts_seconds": 2.633333,
+        "rmse_255": 18.979854583740234
+      },
+      {
+        "decoded_frame": 158,
+        "pts_seconds": 2.65,
+        "rmse_255": 18.54984474182129
+      },
+      {
+        "decoded_frame": 159,
+        "pts_seconds": 2.666667,
+        "rmse_255": 18.137832641601562
+      }
+    ],
+    "outlier_classification": "16 samples: visible cursor over head at startup; character remains visible; outside loop boundaries",
+    "compositor_samples": 5874,
+    "zero_alpha_samples": 0,
+    "style_override_injected": false
+  },
+  "installed_helper_regression": {
+    "checks": [
+      "initial layer styles",
+      "click animation and real EOF return",
+      "DOM pointer drag and release",
+      "random chain turn and EOF facing change (synthetic pool)",
+      "menu movement drive and EOF (synthetic pool)",
+      "single candidate work status native loop",
+      "multiple candidate work status EOF rotation",
+      "rapid consecutive switches settle on final request",
+      "missing media releases pending and valid playback recovers",
+      "stalled media 10s timeout and valid playback recovery"
+    ]
+  },
+  "patch_unit_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "deployment": {
+    "pid": 27980,
+    "styles": [
+      {
+        "active": false,
+        "opacity": "1",
+        "visibility": "hidden",
+        "transition": "0s"
+      },
+      {
+        "active": true,
+        "opacity": "1",
+        "visibility": "visible",
+        "transition": "0s"
+      }
+    ],
+    "reloaded": true,
+    "bounds": {
+      "x": 1580,
+      "y": -165,
+      "width": 1260,
+      "height": 1014
+    },
+    "diskSha256": "c8e1cb94d7f34260753e9d40aacd4ecdeea8b2272d8483c75bbc80f099a03ce4"
+  },
+  "original_runtime_observation": {
+    "observer_seconds": 80,
+    "switches": 8,
+    "all_raf_styles_match": true,
+    "cleanup": true,
+    "desktop_validation_accepted": false,
+    "excluded_recordings": [
+      "First fixed ROI became invalid during dragging",
+      "Second fixed ROI did not contain character; later foreground inspection found Windows lock screen"
+    ]
+  },
+  "limits": [
+    "Finite local Windows/Electron evidence",
+    "Synthetic turn/move/work pools use existing media only",
+    "Pointer tests use DOM events",
+    "No whole-project build/test suite",
+    "No claim for locked-desktop presentation"
+  ]
+}

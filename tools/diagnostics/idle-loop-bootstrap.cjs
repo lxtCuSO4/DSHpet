@@ -3,7 +3,7 @@ const { app } = require('electron');
 const path = require('node:path');
 global.__idleDiagnostic = { fs: require('node:fs'), path };
 global.__idleDiagnostic.requests = [];
-const helper = path.join(process.env.DSH_DIAG_INSTALLED, 'runtime/electron-helper');
+const helper = process.env.DSH_DIAG_HELPER || path.join(process.env.DSH_DIAG_INSTALLED, 'runtime/electron-helper');
 require('node:fs').mkdirSync(path.join(process.env.DSH_DIAG_OUTPUT, 'electron-profile'), { recursive: true });
 app.setPath('userData', path.join(process.env.DSH_DIAG_OUTPUT, 'electron-profile'));
 app.setAppPath(helper);
@@ -20,6 +20,8 @@ if (process.env.DSH_PET_BRIDGE === '1') {
     if (pathname.endsWith('/config')) response.body = JSON.stringify(config);
     if (pathname.includes('/thumb/mypet/')) {
       const name = path.basename(pathname);
+      // Regression-only fault injection: leave one media request unresolved for the 10s guard.
+      if (name === process.env.DSH_DIAG_STALL_ASSET) return true;
       response = { id:req.id, status:200, contentType:'video/webm',
         file:path.join(process.env.DSH_DIAG_ASSETS,name) };
       global.__idleDiagnostic.requests.push({ at:Date.now(),name,transport:'bridge' });

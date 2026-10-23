@@ -6,6 +6,7 @@ import { createReadStream, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve, basename } from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { runVideoRegression } from './video-visibility-regression.mjs';
 
 const require = createRequire(import.meta.url);
 const { _electron } = require('playwright');
@@ -52,6 +53,7 @@ try {
   const env = { ...process.env,
     DSH_DIAG_OUTPUT: output, DSH_DIAG_INSTALLED: installed,
     DSH_DIAG_ASSETS:assetDir,
+    DSH_DIAG_STALL_ASSET: process.argv.includes('--regression') ? '__stalled_regression_asset__.webm' : '',
     DSH_PET_CONFIG_URL: `http://127.0.0.1:${server.address().port}/dsh-pet-7340/config`,
     DSH_PET_BRIDGE: transport === 'bridge' ? '1' : '0', DSH_PET_SMOKE: '0', DSH_PET_FORCE_DSF: '1',
     DSH_PET_HOST_PID: String(process.pid), DSH_PET_SCALE: '1',
@@ -67,6 +69,11 @@ try {
     const s=sprites[0],v=s.front===0?s.videoA:s.videoB;
     return v.readyState>=2 && v.currentTime>0 && !s.pending;
   },null,{timeout:15000});
+  if (process.argv.includes('--regression')) {
+    const checks = await runVideoRegression(page);
+    writeFileSync(join(output, 'regression.json'), JSON.stringify({ checks }, null, 2));
+    console.log(JSON.stringify({ regression: checks }));
+  }
   // Keep the diagnostic window apart from the user's pet and make input pass through.
   await app.evaluate(({ BrowserWindow }) => {
     const win = BrowserWindow.getAllWindows()[0];

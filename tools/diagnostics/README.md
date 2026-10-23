@@ -3,6 +3,7 @@
 用于观察本机已安装的 Electron helper。不会修改安装目录、宠物配置或素材；
 会启动独立诊断窗口并在输出目录写入配置副本、日志和截图，结束后关闭该窗口。
 原桌宠保持运行。诊断窗口位于屏幕左上角，始终点击穿透。
+若加 `--regression`，会先在独立实例中执行交互测试并移动该测试窗口，之后才固定到左上角。
 
 输出含本机配置，务必放在已忽略的 `_art/` 下；不要提交原始配置、桌面录屏或截图。
 脚本目前针对 Windows、本机 `mypet-1`、size 420、五条自定义素材的环境，
@@ -25,6 +26,22 @@ node --experimental-strip-types tools/diagnostics/idle-loop-probe.mjs _art/idle-
 - `native`：仅在诊断实例中改为原生循环，用于检验交接中的假设。
 - `fade`：仅在诊断实例中恢复旧 CSS 淡入淡出，作为透明度下降的阳性对照。
 - `visibility`：保留原双视频加载和换层逻辑，仅将 CSS 显隐从 opacity 改成 visibility，用于区分显示方式。
+
+`original` 指当前磁盘安装文件；本轮修复部署后，它已经使用 visibility，不能把该名称当成旧 opacity 基线。
+可设置 `DSH_DIAG_HELPER` 为一个完整 helper 副本的绝对路径，验证候选补丁而不改安装目录。
+
+## 修复回归
+
+```powershell
+node --test tools/diagnostics/video-visibility-patch.test.mjs
+node --experimental-strip-types tools/diagnostics/idle-loop-probe.mjs _art/idle-loop-fix/regression 1 bridge original --regression
+```
+
+覆盖计算样式、点击/EOF、DOM 拖拽、临时转向/移动池、工作状态、快速切换、素材错误和真实 10 秒加载超时。
+转向/移动/工作池只在一次性实例内设置，使用现有素材；不改用户配置。
+该回归针对本机五素材宠物；不代表真实鼠标捕获或所有自定义宠物配置均已验证。
+测试和复测最终桌面录制应串行运行，避免测试窗口遮挡录屏区域。
+部署工具、备份位置与本轮证据见 `docs/diagnostics/2026-10-23-idle-visibility-fix.md`。
 
 `probe.json` 记录媒体事件、方法调用、视频帧回调与近循环点的 RAF 状态。
 `captureFrames` 为 `beginFrameSubscription` 获取的合成帧透明度总和与亮度。
