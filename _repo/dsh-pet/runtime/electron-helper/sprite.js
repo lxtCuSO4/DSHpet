@@ -1113,31 +1113,13 @@ class PetSprite {
     this.startThrow(this.pos.x, this.pos.y, vx, vy);
   }
 
-  /** Q 弹挤压：前台视频垂直压扁（贴地锚定，transform-origin:bottom）再回弹；
-   *  与浏览器同构，曲线在 shared（S.squashScale）。depth = 下压幅度（点击固定 0.55；
-   *  落地按冲击速度 S.landingSquash 动态取）。reduce-motion 时跳过。 */
-  startSquash(el, depth = S.SQ_SQUASH) {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const token = ++this.squashToken;
-    if (this.squashRef !== null) cancelAnimationFrame(this.squashRef);
-    const origin = el.style.transformOrigin;
-    el.style.transformOrigin = 'bottom';
-    const t0 = performance.now();
-    const step = () => {
-      if (this.squashToken !== token) return;
-      const u = Math.min((performance.now() - t0) / S.SQ_DURATION_MS, 1);
-      const scale = S.squashScale(u, depth);
-      el.style.transform = (this.facing === 'right' ? 'scaleX(-1) ' : '') + 'scaleY(' + scale + ')';
-      if (u < 1) {
-        this.squashRef = requestAnimationFrame(step);
-      } else {
-        this.squashRef = null;
-        el.style.transformOrigin = origin;
-        // 恢复纯镜像（若期间 switchTo 重置过 transform，也以镜像为准）
-        el.style.transform = this.facing === 'right' ? 'scaleX(-1)' : '';
-      }
-    };
-    this.squashRef = requestAnimationFrame(step);
+  /** 保持原素材比例：点击与落地不再额外压扁或拉伸视频。 */
+  startSquash(el) {
+    // pet-original-aspect v1
+    this.stopSquash();
+    this.pendingSquash = false;
+    el.style.transformOrigin = 'center';
+    el.style.transform = this.facing === 'right' ? 'scaleX(-1)' : '';
   }
 
   stopSquash() {
