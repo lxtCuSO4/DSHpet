@@ -149,5 +149,5 @@ node --test tools/diagnostics/video-visibility-patch.test.mjs
 
 - **代码**：保留原项目 [MIT License](LICENSE) 及 `Copyright (c) 2026 PC2005-cloud` 声明。
 - **原项目素材**：原项目文档对动画、提示词和源视频注明“允许开源使用，禁止商用”，详见 [原项目许可说明](_repo/README.md#许可)。
-- **衍生作品**：原项目要求在介绍、展示和分发衍生作品时附上原作者 GitHub 地址：<https://github.com/PC2005-cloud/dsh-pet>。
+- **衍生作品**：原作者 GitHub 地址：<https://github.com/PC2005-cloud/dsh-pet>。
 - **其他素材与字体**：遵守各自授权；自行引入的角色和素材也应确认相应使用权限。
